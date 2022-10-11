@@ -1,6 +1,5 @@
 ﻿using OpenTabletDriver;
 using OpenTabletDriver.Plugin;
-using OpenTabletDriver.Plugin.Attributes;
 using OpenTabletDriver.Plugin.DependencyInjection;
 using OpenTabletDriver.Plugin.Output;
 using OpenTabletDriver.Plugin.Tablet;
@@ -12,7 +11,7 @@ namespace Flip_Axes
 {
     public abstract class Flip_Axes_Base : IPositionedPipelineElement<IDeviceReport>
     {
-        protected Vector2 ToUnit(Vector2 input)
+        protected Vector2 ToUnit_Screen(Vector2 input)
         {
             if (outputMode is not null)
             {
@@ -32,7 +31,7 @@ namespace Flip_Axes
             }
         }
 
-        protected Vector2 FromUnit(Vector2 input)
+        protected Vector2 FromUnit_Screen(Vector2 input)
         {
             if (outputMode is not null)
             {
@@ -51,6 +50,38 @@ namespace Flip_Axes
             }
         }
 
+        protected Vector2 ToUnit_Tablet(Vector2 input)
+        {
+            if (outputMode is not null)
+            {
+                var tablet = outputMode?.Tablet.Properties.Specifications.Digitizer;
+                return new Vector2(
+                    input.X / tablet.MaxX * 2 - 1,
+                    input.Y / tablet.MaxY * 2 - 1
+                    );
+            }
+            else
+            {
+                tryResolveOutputMode();
+                return default;
+            }
+        }
+
+        protected Vector2 FromUnit_Tablet(Vector2 input)
+        {
+            if (outputMode is not null)
+            {
+                var tablet = outputMode?.Tablet.Properties.Specifications.Digitizer;
+                return new Vector2(
+                    (input.X + 1) / 2 * tablet.MaxX,
+                    (input.Y + 1) / 2 * tablet.MaxY
+                );
+            }
+            else
+            {
+                return default;
+            }
+        }
 
         [Resolved]
         public IDriver driver;

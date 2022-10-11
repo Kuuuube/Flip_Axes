@@ -1,14 +1,13 @@
 ﻿using OpenTabletDriver.Plugin.Attributes;
 using OpenTabletDriver.Plugin.Tablet;
 using OpenTabletDriver.Plugin.Output;
-using OpenTabletDriver.Plugin;
 using System;
 using System.Numerics;
 
 namespace Flip_Axes
 {
-    [PluginName("Flip Axes")]
-    public class Flip_Axes : Flip_Axes_Base
+    [PluginName("Flip Tablet Axes")]
+    public class Flip_Tablet_Axes : Flip_Axes_Base
     {
 
         public Vector2 Flip(Vector2 input)
@@ -37,18 +36,18 @@ namespace Flip_Axes
             Emit?.Invoke(value);
         }
 
-        public Vector2 Filter(Vector2 input) => FromUnit(Flip(ToUnit(input)));
+        public Vector2 Filter(Vector2 input) => FromUnit_Tablet(Flip(ToUnit_Tablet(input)));
 
-        public override PipelinePosition Position => PipelinePosition.PostTransform;
+        public override PipelinePosition Position => PipelinePosition.PreTransform;
 
         [BooleanProperty("Flip X Axis", ""), ToolTip
             ("Flip Axes:\n\n" +
-            "Flip X Axis: Flips the X axis coordinates.")]
+            "Flip X Axis: Flips the tablet's X axis coordinates.")]
         public bool Flip_X { set; get; }
 
         [BooleanProperty("Flip Y Axis", ""), ToolTip
         ("Flip Axes:\n\n" +
-        "Flip X Axis: Flips the Y axis coordinates.")]
+        "Flip X Axis: Flips the tablet's Y axis coordinates.")]
         public bool Flip_Y { set; get; }
     }
 }

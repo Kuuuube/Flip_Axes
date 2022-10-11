@@ -4,6 +4,14 @@ Flips the X or Y axes of the tablet area.
 
 ## Explanation of the Values:
 
-**Flip X Axis:** Flips the X axis coordinates.
+### Flip Area Axes
 
-**Flip Y Axis:** Flips the Y axis coordinates.
+**Flip X Axis:** Flips the tablet area's X axis coordinates.
+
+**Flip Y Axis:** Flips the tablet area's Y axis coordinates.
+
+### Flip Tablet Axes
+
+**Flip X Axis:** Flips the tablet's X axis coordinates.
+
+**Flip Y Axis:** Flips the tablet's Y axis coordinates.
