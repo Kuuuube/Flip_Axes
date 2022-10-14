@@ -41,12 +41,12 @@ namespace Flip_Axes
         public override PipelinePosition Position => PipelinePosition.PreTransform;
 
         [BooleanProperty("Flip X Axis", ""), ToolTip
-            ("Flip Axes:\n\n" +
+            ("Flip Tablet Axes:\n\n" +
             "Flip X Axis: Flips the tablet's X axis coordinates.")]
         public bool Flip_X { set; get; }
 
         [BooleanProperty("Flip Y Axis", ""), ToolTip
-        ("Flip Axes:\n\n" +
+        ("Flip Tablet Axes:\n\n" +
         "Flip X Axis: Flips the tablet's Y axis coordinates.")]
         public bool Flip_Y { set; get; }
     }
