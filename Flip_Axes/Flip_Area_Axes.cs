@@ -12,6 +12,10 @@ namespace Flip_Axes
 
         public Vector2 Flip(Vector2 input)
         {
+            if (output_mode_type != OutputModeType.absolute) {
+                return input;
+            }
+
             if (Flip_X)
             {
                 input.X = input.X * -1;
